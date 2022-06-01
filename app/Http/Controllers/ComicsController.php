@@ -90,12 +90,12 @@ class ComicsController extends Controller
                 'title' => 'required'
             ]
         );
-        
+
         $data = $request->all();
         $comic -> fill($data);
         $comic -> save();
 
-        return redirect()-> route('comics.show', $comic);
+        return redirect()-> route('comics.show', $comic)->with('message', "Hai aggiornato con successo $comic->title" );
     }
 
     /**
@@ -104,8 +104,9 @@ class ComicsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Comic $comic)
     {
-        //
+        $comic -> delete();
+        return redirect()-> route('comics.index')->with('message', "Hai eliminato con successo $comic->title" );
     }
 }

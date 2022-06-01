@@ -1,8 +1,13 @@
-@extends('layouts.layout')    
+@extends('layouts.layout')   
+
+@include('includes.header')
 
 @section('content')
     
     <h1 style="color: cornflowerblue; text-align:center; margin-top:30px; margin-bottom:30px;">Fumetti</h1>
+
+    {{-- pop up --}}
+    @include('includes.message')
 
     <table class="table">
         <thead>
@@ -33,7 +38,12 @@
                 <td>{{$comic -> type}}</td>
                 <td>
                     <a href="{{route('comics.show', $comic->id)}}" class="btn btn-primary d-flex justify-content-center mb-2">Info</a>
-                    <a href="{{route('comics.edit', $comic->id)}}" class="btn btn-warning">Modifica</a>
+                    <a href="{{route('comics.edit', $comic->id)}}" class="btn btn-warning mb-2">Modifica</a>
+                    <form action="{{route('comics.destroy', $comic->id)}}" method="POST" class="delete-form" data-name="{{$comic->title}}">
+                        @method('DELETE')
+                        @csrf
+                        <button class="btn btn-danger" type="submit">Elimina</button>
+                    </form>
                 </td>
             </tr>
 
@@ -48,4 +58,6 @@
 
 
 
+@section('delete-message')
+    <script src="{{asset('js/deleteMessage.js')}}"></script>
 @endsection

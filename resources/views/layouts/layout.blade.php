@@ -9,10 +9,11 @@
 </head>
 <body>
 
-    @include('includes.header')
+    
 
     @yield('content')
 
     <script src=" {{ asset('js/app.js') }} "></script>
+    @yield('delete-message')
 </body>
 </html>

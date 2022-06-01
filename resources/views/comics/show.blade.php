@@ -1,6 +1,11 @@
 @extends('layouts.layout')
 
+@include('includes.header')
+
 @section('content')
+    
+    {{-- pop up --}}
+    @include('includes.message')
 
     <h1 style="color: cornflowerblue; text-align:center; margin-top:30px; margin-bottom:30px;">{{$comic->title}}</h1>
     <div class="text-center">

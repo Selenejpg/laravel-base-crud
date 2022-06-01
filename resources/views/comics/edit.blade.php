@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@include('includes.header')
+
 @section('content')
     <div class="container text-center">
         
