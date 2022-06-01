@@ -37,6 +37,13 @@ class ComicsController extends Controller
      */
     public function store(Request $request)
     {
+        //validazione
+        $request-> validate(
+            [
+                'title' => 'required'
+            ]
+        );
+        
         $data = $request->all();
         $new_comic = new Comic();
         $new_comic -> fill($data);
@@ -63,9 +70,9 @@ class ComicsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Comic $comic)
     {
-        //
+        return view('comics.edit', compact('comic'));
     }
 
     /**
@@ -75,9 +82,20 @@ class ComicsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Comic $comic)
     {
-        //
+        //validazione
+        $request-> validate(
+            [
+                'title' => 'required'
+            ]
+        );
+        
+        $data = $request->all();
+        $comic -> fill($data);
+        $comic -> save();
+
+        return redirect()-> route('comics.show', $comic);
     }
 
     /**

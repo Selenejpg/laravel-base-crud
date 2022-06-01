@@ -32,7 +32,8 @@
                 <td>{{$comic -> sale_date}}</td>
                 <td>{{$comic -> type}}</td>
                 <td>
-                    <a href="{{route('comics.show', $comic->id)}}" class="btn btn-primary">Info</a>
+                    <a href="{{route('comics.show', $comic->id)}}" class="btn btn-primary d-flex justify-content-center mb-2">Info</a>
+                    <a href="{{route('comics.edit', $comic->id)}}" class="btn btn-warning">Modifica</a>
                 </td>
             </tr>
 
